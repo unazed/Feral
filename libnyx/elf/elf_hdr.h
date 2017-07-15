@@ -9,14 +9,12 @@
 
 //TODO: Go around the whole source tree and slap the appropriate license headers everywhere.
 
-#ifndef _KERNEL_MACHO_
-#define _KERNEL_MACHO_
+#ifndef _KERNEL_ELF_HDR_
+#define _KERNEL_ELF_HDR_
 
 #include "macho_types.h"
 
 
-
-//Referenced from Cupertino's kernel.
 struct
 {
 	UINT64 Magic;
@@ -27,8 +25,6 @@ struct
 	UINT64 SizeOfCmds;
 	UINT64 Flags;
 }MachHeader;
-
-struct MachHeader** GetMachHeaders(void);
 
 
 

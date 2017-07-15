@@ -1,5 +1,14 @@
-#ifndef _LIB_NYX_MACHO_H_
-#define _LIB_NYX_MACHO_H_
+/* 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ *
+ * Contributors:
+ *	Brian Schnepp [author]
+ */
+
+#ifndef _LIB_NYX_ELF_H_
+#define _LIB_NYX_ELF_H_
 
 #include <nyx/size_abstract.h>
 
