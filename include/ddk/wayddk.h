@@ -8,9 +8,8 @@
 #ifndef _FERAL_DRIVER_H_
 #define _FERAL_DRIVER_H_
 
-#include "../feralstatus.h"
-#include "../feral/feralobjs.h"
-//TODO: when makefiles are ready, fix these to be done with angle braces. (relative to root)
+#include <feralstatus.h>
+#include <feral/feralobjs.h>
 
 #ifdef __cplusplus
 extern "C" 
@@ -52,6 +51,11 @@ typedef struct _IRP
 	//TODO...
 	
 	//TODO, message packets sent between drivers, kernely stuff, etc.
+	union
+	{
+		struct _IRP* MasterIrp;
+		VOID* SystemBuffer;
+	}AssociatedIRP;
 }IRP;
 
 typedef struct _SessMgr

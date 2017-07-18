@@ -1,38 +1,57 @@
-#ifndef _WILDNYX_IPC_MSG_H_
-#define _WILDNYX_IPC_MSG_H_
+/* 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ *
+ * Contributors:	
+ *	Brian Schnepp	[author]
+ */
 
-#include <nyx/size_abstract.h>	
-//This file becomes just "#include <feral/feralobjs.h" when merged.
 
-typedef struct _NyxTask
+#ifndef _FERAL_IPC_MSG_H_
+#define _FERAL_IPC_MSG_H_
+
+#include <feral/feralobjs.h>	
+
+typedef struct _FeralTask
 {
-		/* Stuff we'll need. */
-		UINTN references;
-		UINTN threads;
+	/* Stuff we'll need. */
+	UINTN references;
+	UINTN threads;
 		
-		UINT64 task_flags;	//Running, not running, blocked, etc...
-		BOOLEAN terminated;	//This task should be removed when the kernel sees it...
+	UINT64 task_flags;	//Running, not running, blocked, etc...
+	BOOLEAN terminated;	//This task should be removed when the kernel sees it...
 		
-		/* Statistics... */
-		UINT64 total_user_time;
-		UINT64 total_system_time;
+	/* Statistics... */
+	UINT64 total_user_time;
+	UINT64 total_system_time;
 		
-		struct _NyxTask* children;	//Child tasks...
+	struct _FeralTask* children;	//Child tasks...
 		
-		//TODO: Virtual memory map declarations and all.
-		
-		UINTN priority;				//Priority of this task. 0 - 255.
-									//Max of whatever is "natural int" of tasks.
+	//TODO: Virtual memory map declarations and all.
+	
+	UINTN priority;				//Priority of this task. 0 - 255.
+						//Max of whatever is "natural int" of tasks.
 									
-		//TODO: IPC ports and all.
-		/* TODO: pretty much everything. */
+	//TODO: IPC ports and all.
+	/* TODO: pretty much everything. */
 		
-}NyxTask;
+}FeralTask;
 
 typedef struct
 {
 		UINTN msg_hdr_bits;
 		UINTN msg_hdr_size;
-}NyxMsgHdr;
+}FeralMsgHdr;
+
+typedef struct _FeralIpcMapping
+{
+	UINTN NumOfPages;	//Number of pages shared between two processes.
+	VOID* Pages;		//Pointer to the actual (contiguous) physical pages.
+}FeralIpcMapping;
 
 #endif
+
+//We **really** need fast IPC (around as fast as SeL4!!!) because framing manager is in userspace.
+//To have any reasonable chance at out-competing other platforms for getting ports of video games to, we need to have **signifigant** performance improvements.
+//We have to obsess over the little things. If it isn't 256% better, not worth the effort. 100% doesn't cut it.

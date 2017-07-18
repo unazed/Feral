@@ -1,6 +1,6 @@
 #ifndef _NYX_SIZE_ABSTRACT_H_
 #define _NYX_SIZE_ABSTRACT_H_
-
+/*
 #include <feral.h>
 
 #ifdef _FERAL_H_
@@ -19,5 +19,9 @@
 		
 		typedef UINT8 BOOLEAN;
 	#endif
-#endif
+#endif*/
+
+//TODO: Clean up the glue we had mergine Wildnyx back into Feral.
+//LEGACY. USE OF THIS HEADER IS DEPRECATED.
+#include "../feral/feralobjs.h"
 #endif
