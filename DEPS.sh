@@ -1,7 +1,5 @@
 #!/bin/sh
 
-##For if you're building on FreeBSD itself (you should)
-
-pkg install clang
-pkg install nasm
-pkg install bmake
+sudo pacman -S clang
+sudo pacman -S nasm
+sudo pacman -S bmake
