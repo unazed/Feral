@@ -29,8 +29,8 @@ typedef signed char  INT8;
 		
 typedef UINT8 BOOLEAN;
 typedef UINT8 BYTE;
-//Are these correct? I have 2 little quad-core ARM machines lying around to test on.
-//No clue if they're Aarch64 or not. Will port + test sometime.
+//Are these correct? I have 2 little quad-core Acorn processor machines lying around to test on.
+//Not sure if they're Aarch64 or if they're ARM32. No labelling or anything ): Will port + test sometime.
 #endif
 
 typedef void VOID;
@@ -52,5 +52,5 @@ typedef INT8*  PINT8;
 typedef BOOLEAN*  PBOOLEAN;
 typedef BYTE*     PBYTE;
 
-typedef VOID* PVOID;
+typedef VOID* PVOID, LPVOID;
 #endif
