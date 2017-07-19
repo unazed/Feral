@@ -10,17 +10,6 @@ typedef enum
 }IRQLevel;
 
 
-
-
-typedef struct _FERAL_DRIVER_CORE_CLASS
-{
-	IRQLevel Level;
-	UINT8*   DriverName;
-	
-
-}FERAL_DRIVER_CORE_CLASS:
-
-
-
+//TODO...
 
 #endif
