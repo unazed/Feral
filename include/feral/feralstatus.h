@@ -1,7 +1,16 @@
+/* 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ *
+ * Contributors:	
+ *	Brian Schnepp	[author]
+ */
+
 #ifndef _FERAL_STATUS_H_
 #define _FERAL_STATUS_H_
 
-#include <feral/feralobjs.h>
+#include "feralobjs.h"
 
 #ifdef __cplusplus
 extern "C" 
@@ -40,16 +49,9 @@ inline BOOLEAN FL_INFORMATION(FERALSTATUS status)
 inline BOOLEAN FL_SUCCESS(FERALSTATUS status)
 {
 	BOOLEAN infotype = FL_INFORMATION(status);
-	if (infotype)
+	if ((infotype) || (status < 0x3FFFFFFF))
 	{
 		return true;
-	}
-	else
-	{
-		if (status < 0x3FFFFFFF)
-		{
-			return true;
-		}
 	}
 	return false;
 }
@@ -63,7 +65,7 @@ inline BOOLEAN FL_WARNING(FERALSTATUS status)
 	return false;
 }
 
-inline BOOLEAN FL_WARNING(FERALSTATUS status)
+inline BOOLEAN FL_ERROR(FERALSTATUS status)
 {
 	if ((status > 0xC0000000) && (status < 0xFFFFFFFF))
 	{
@@ -71,6 +73,7 @@ inline BOOLEAN FL_WARNING(FERALSTATUS status)
 	}
 	return false;
 }
+#endif 
 
 
 #ifdef __cplusplus

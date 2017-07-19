@@ -47,7 +47,7 @@ typedef struct
 typedef struct _FeralIpcMapping
 {
 	UINTN NumOfPages;	//Number of pages shared between two processes.
-	VOID* Pages;		//Pointer to the actual (contiguous) physical pages.
+	UINTN* Pages;		//Pointer to the actual (contiguous) physical pages.
 }FeralIpcMapping;
 
 #endif
@@ -55,3 +55,15 @@ typedef struct _FeralIpcMapping
 //We **really** need fast IPC (around as fast as SeL4!!!) because framing manager is in userspace.
 //To have any reasonable chance at out-competing other platforms for getting ports of video games to, we need to have **signifigant** performance improvements.
 //We have to obsess over the little things. If it isn't 256% better, not worth the effort. 100% doesn't cut it.
+
+
+
+FeralIpcMapping* KeAllocateIpcSpace(FeralTask processA, FeralTask processB, UINTN numOfPages)
+{
+	//TODO...
+	//Things we need to consider: If process B (passer) terminates before process A (reciever), how does memory deallocation work?
+} 
+
+
+
+
