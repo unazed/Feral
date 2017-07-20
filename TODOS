@@ -2,3 +2,7 @@ Work on Multiboot 2 compliance.
 Memory management, filesystems, everything.
 Reference whatever's needed.
 
+Ensure we have some sort of ELF64 loader for x86-64 so that Multiboot 1 can load the kernel (indirectly) just fine.
+Maybe find some way to glue an ELF32 stub on the kernel???
+
+___

@@ -1,4 +1,5 @@
 export CC   = clang
+export CXX  = clang++
 export LD   = ld.lld
 export ASM  = nasm
 export MAKE = bmake
@@ -14,7 +15,7 @@ OBJS = 		bootstrap.o	\
 		##libnyx.a	\
 		##libthreads.a	\
 		
-GOAL = vmwildnyz
+GOAL = floskrnl
 
 export BUILD_DIR = $(shell readlink -f build/)
 
