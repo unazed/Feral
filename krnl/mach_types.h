@@ -8,12 +8,6 @@
  */
 #include <nyx/size_abstract.h>
 
-/*
-	To be truthful, I just want to get to actually making a working kernel already,
-	**really** focus on performance (none of this slow microkernel stuff), and
-	make a solid messaging/communication system.	 
-*/
-
 /* CPU stuff */
 typedef INT32 CpuType;
 typedef INT32 CpuSubtype;

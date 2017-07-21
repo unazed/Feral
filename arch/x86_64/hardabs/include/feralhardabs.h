@@ -14,7 +14,7 @@ bool kernelHardwareClockLocalOrUtcTime = 0;	//Assume it's UTC time on hardware c
 
 typedef struct _DAY_MONTH_PAIR __attribute__((__packed__))
 {
-	UINT8 NumDaysEven : 1 	//If number of days is 30 or 28. Just to waste a bit to get Day to 4 bits.
+	UINT8 NumDaysEven : 1 	//If number of days is 30 or 28/29. Just to waste a bit to get Day to 4 bits.
 	UINT8 Month 	  : 3;	//0 - 14 (Smallest you can represent months with)
 	UINT8 Day   	  : 4;	//0 - 31
 }DAY_MONTH_PAIR

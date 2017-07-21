@@ -53,4 +53,18 @@ typedef BOOLEAN*  PBOOLEAN;
 typedef BYTE*     PBYTE;
 
 typedef VOID* PVOID, LPVOID;
+
+
+
+#ifndef TRUE
+#define TRUE ((BOOLEAN)1) 
 #endif
+
+#ifndef FALSE
+#define FALSE ((BOOLEAN)0)
+#endif
+
+
+#endif
+
+
