@@ -21,7 +21,7 @@
 	#endif
 #endif*/
 
-//TODO: Clean up the glue we had mergine Wildnyx back into Feral.
+//TODO: Clean up the glue we had merging Wildnyx back into Feral.
 //LEGACY. USE OF THIS HEADER IS DEPRECATED.
 #include "../feral/feralobjs.h"
 #endif

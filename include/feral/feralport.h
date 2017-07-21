@@ -22,7 +22,9 @@ typedef FeralPort *FeralPortArray;
 // We try to cram a lot of information about where/how things should go into as small of a reasonable unit as we can.
 // Thus, we can assume at least 32 bits of space (4 billion or so as the max number we got), but often the full 64-bits.
 
-// (if we feel particularly creative, figure out a way to emulate a 64-bit register on a 32-bit CPU with some clever hack magic of 'fake registers' in RAM...)
+// Design choices on the spot are FUN!
+
+// (if we feel particularly creative, figure out a way to emulate a 64-bit register on a 32-bit CPU with some clever hack of 'fake registers' in RAM...)
 // (on a 32-bit system, this really hurts performance (as slow as RAM now, which is often MUCH slower than register), but lets us assume we get 64 bits to work with.)
 
 #endif
