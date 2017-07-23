@@ -1,15 +1,18 @@
 General style guidelines
+(expect these to change all the time since I'm horribly inconsistent)
 _____
 
 
 
-System calls should always be defined with the <PREFIX> <OBJECT> <ACTION> order.
+System calls, commonly used functions, etc should always be defined with the <PREFIX> <OBJECT> <ACTION> order.
 (Extensions to that specifically are OK though.)
 PREFIX must ALWAYS be 2 characters. (ie, "Ke", "Ne", "Us", "Mm", "Pc", etc.)
 Some examples:
 KeGetCurrentThread
-UsConvertKernelTimeToEpochTime (not a system call but same naming convention)
+UsConvertKernelTimeToEpochTime
 
+If you name a function which doesn't follow that format, you should assume that it's an 'unstable function' and can be changed/modified/etc. at any time for whatever reason.
+(Don't rely on that function still existing).
 
 Function declarations should ALWAYS be on ONE LINE.
 No matter how long it is, no matter how ridiculous it looks.

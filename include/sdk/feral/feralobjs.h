@@ -64,6 +64,26 @@ typedef VOID* PVOID, LPVOID;
 #define FALSE ((BOOLEAN)0)
 #endif
 
+#if defined(__arm__) || defined(__i386__)
+
+typedef UINT32 UINTN;
+typedef INT32  INTN; 
+
+#define UINTN_MAX ((1 << 32))
+#define  INTN_MAX ((1 << 31) - 1)
+
+#endif
+
+#if defined(__aarch64__) || defined(__x86_64__) 
+
+typedef UINT64 UINTN;
+typedef  INT64  INTN; 
+
+#define UINTN_MAX ((1 << 64))
+#define  INTN_MAX ((1 << 63) - 1)
+
+#endif
+
 
 #endif
 

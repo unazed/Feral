@@ -11,6 +11,7 @@
 #define _FERAL_STATUS_H_
 
 #include <feral/feralobjs.h>
+#include <feral/boolean.h>
 
 #ifdef __cplusplus
 extern "C" 
@@ -21,7 +22,7 @@ extern "C"
 	Values between 0 and 0x3FFFFFFF are success, 0x40000000 and 0x7FFFFFFF are informational (which is also success), anything above is a warning or error.
 	This splits it into nice, even fourths.
  */
-typedef enum FERALSTATUS
+typedef enum _FERALSTATUS
 {
 	Success   = 0x0,	//Everything OK! Last call was fine, kernel is doing good, don't worry.
 
@@ -35,7 +36,7 @@ typedef enum FERALSTATUS
 
 
 	//Informational...
-};
+}FERALSTATUS;
 
 inline BOOLEAN FL_INFORMATION(FERALSTATUS status)
 {
@@ -73,7 +74,7 @@ inline BOOLEAN FL_ERROR(FERALSTATUS status)
 	}
 	return false;
 }
-#endif 
+
 
 
 #ifdef __cplusplus

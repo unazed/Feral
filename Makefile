@@ -8,6 +8,11 @@ export ARCH = x86_64
 
 export TRIPLE = $(ARCH)-unknown-none-gnu
 
+export ROOT = $(shell readlink -f .)
+
+##Intentionally leave out the first '-I' so this looks natural.
+export INCLUDE = $(ROOT)/include -I($ROOT)/sdk
+
 ##I'm really bad at makefiles. Fix this later.
 OBJS = 		bootstrap.o	\
 		##kernel.so	\
