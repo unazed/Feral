@@ -2,9 +2,6 @@
 ; (See 'LICENSE' in root directory for licensing terms of this file.
 ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;
 
-; What we'll do is be actually an ELF64 kernel, but use objcopy to pass off as ELF32.
-; Dirty magic, but necessary to use QEMU for testing.
-
 MB_ALIGN    equ 1<<0
 MB_MEM_INFO equ 1<<1
 MB_FLAGS    equ MB_ALIGN | MB_MEM_INFO
@@ -22,7 +19,7 @@ dd MB_CHECKSUM
 ALIGN 4
 
 stack_bottom:
-	resb 8196	;8KiB for kernel stack...
+	resb 12288	;12KiB for kernel stack...
 
 stack_top:
 			; on x86/x86-64, stack grows downward.
@@ -31,15 +28,25 @@ stack_top:
 global _kinit:function (_kinit.end - _kinit)
 _kinit:
 	mov esp, stack_top		; Setup stack. C cannot work without stack.
-	extern Kernel_Main		; Kernel_Main defined in main.c...
-	call   Kernel_Main		; Jump to kernel's main code...
-	cli
+	mov ebp, stack_bottom		; Are we actually doing this right? I'm not great at assembly, but I'm trying.
+
+	;push eax			;Do we need eax for anything?? 
+	push ebx			;Multiboot struct pointer.
+
+	
+
+	extern KElfLoader		; Kernel_Main defined in main.c...	;Switch to instead target an ELF loader which then loads the kernel.
+	call   KElfLoader		; Jump to kernel's main code...		;The loader is defined in hardabs.c. We shouldn't return.
+	cli									;Kernel shutdown routine TODO.
 	hlt
+
 .hang:
 	jmp $
 
 .end:
 
+
+;TODO: Switch to 64-bit mode, and THEN load the kernel. This is so we can keep the kernel as "an ordinary ELF64 executable" and be easy to swap out the bootloader.
 
 
 

@@ -7,7 +7,9 @@
  *	Brian Schnepp [author]
  */
 
-void Kernel_Main(int argc, char* argv[])
+#include <hardabs/multiboot.h>
+
+void Kernel_Main(FeralBoot_Header* header)
 {
 	//Hello, world!!
 	for (;;){};	//Temporary!!

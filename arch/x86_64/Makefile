@@ -1,4 +1,4 @@
-CFLAGS = -O3 -I$(INCLUDE) -ffreestanding
+CFLAGS = -O3 -I$(INCLUDE) -ffreestanding -mcmodel=large -mno-red-zone -mno-mmx -mno-sse -mno-sse2
 
 LOCAL_GOALS = flbooter bootstrap.o
 

@@ -34,7 +34,7 @@ VOID* KeGetCurrentThread();
 // context switch, which does the most to impact performance. (over 100 CPU cycles!!!! Bad!!!)
 // We'd rather leave the kernel thread in a spinlock while inactive (which shouldn't happen too much) than have it on ALL cores/threads 
 // and into a giant mess. In a Zen 1700X CPU, we'd have 1 core (2 
-// threads) available for the kernel, and 14 physical threads for userspace processes. Plenty of room.
+// threads) available for the kernel, and 14 real threads for userspace processes. Plenty of room.
 // We care more about performance than scalability. (And readability over performance, 
 // hence why C instead of raw assembly. Also so we can do an Aarch64 port.)
 
@@ -61,6 +61,11 @@ UINT64 UsConvertKernelTimeToEpochTime(DAY_MONTH_PAIR pair);
 //Probably a 12MB stack.
 
 
+/* HARDABS error messages */
+#define HARDABS_MSG_HARDWARE_ERROR "\n\n !!! Hardware malfunction! !!! \n\n"
+#define HARDABS_MSG_HALT	     "\n !!! The system has halted !!! \n"
+
+#define HARDABS_MSG_PANIC	       " !!! HARDABS panic! System halting... !!! "
 
 
 
