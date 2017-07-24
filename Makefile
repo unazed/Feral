@@ -19,8 +19,15 @@ OBJS = 		bootstrap.o	\
 		##x86-64.o	\
 		##libnyx.a	\
 		##libthreads.a	\
-		
-GOAL = floskrnl
+
+#The kernel image		
+GOAL           = floskrnl
+
+# What Waypoint will boot with for now...
+MULTIBOOT_GOAL = flbooter
+
+# The ELF loader we boot from EFI firmware. This will be done when I get around to it.		
+EFI_GOAL       = floskldr
 
 export BUILD_DIR = $(shell readlink -f build/)
 

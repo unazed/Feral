@@ -5,4 +5,24 @@ Reference whatever's needed.
 Ensure we have some sort of ELF64 loader for x86-64 so that Multiboot 1 can load the kernel (indirectly) just fine.
 Maybe find some way to glue an ELF32 stub on the kernel???
 
+
+
+
+
+
 ___
+
+Random ideas that probably won't ever get consideration again:
+	- Do we want to keep the name Waypoint? Consider others like:
+		- "The Hunting Party" (it's a collection of non-GPLed free software >>hunting<< for the best performance possible. Strange for an OS name though.)
+		- "Morpheus"/"MorpheOS" (It's just a dream that will never get off the ground anyway.)
+		- "GoldOS" (after the color scheme we picked)
+		- "Midnight" (we really like the color black for some reason. This might cause confusion with MidnightBSD though.)
+
+	- Directly port FAT32 drivers from FreeBSD.
+		(Is this legal though with the whole patent thing? What specifically is the patent on?)
+
+	- Write our own 3D graphics API, which ironically isn't really aimed at performance as it is to make it easy to create a new game/game engine against it. Fast enough for games, simple enough to 
+		learn fast.
+
+	- Be lazy and port Xorg instead of making our own framing system (new one specifically designed for performance).

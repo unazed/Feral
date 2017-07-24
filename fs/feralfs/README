@@ -19,8 +19,12 @@ Design considerations:
 		- (cache direct locations (ADDRESSES/OFFSETS, NOT COPIES) of commonly accessed files somewhere in disk where it's super easy to find that again instead of going through folders a lot)
 			- Make this user-configurable, at FORMAT-TIME.
 			- Files there are identified with file ID or something I don't know, figure it out.
+
 	- TRIM when needed.
+
 	- Avoid user intervention and maintence of the filesystem. This is for 'user experience' reasons so we can check a tickmark to say 'Use Waypoint for gaming!'
 		- Don't sacrifice performance for user experience. If those two ever come into conflict, pick performance every time.
 
 	- Max size should be something reasonable. We're expecting Waypoint to take even longer than the Hurd to become even remotely useful, so expect that 1 petabyte files to be fairly common.
+
+	- SSD wear ism't something to worry about too much. If we can help it, we should try to not shorten SSD life, but don't sacrifice read times for SSD lifetime.
