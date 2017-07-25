@@ -52,7 +52,21 @@ typedef INT8*  PINT8;
 typedef BOOLEAN*  PBOOLEAN;
 typedef BYTE*     PBYTE;
 
+typedef CHAR8     CCHAR, CHAR;
+
 typedef VOID* PVOID, LPVOID;
+
+typedef UINT32 DWORD;
+typedef UINT64 DWORDLONG;
+
+typedef float FLOAT;
+typedef double DOUBLE;
+
+typedef UINT32 INT;
+typedef UINT32 LONG;
+typedef UINT64 LONGLONG;
+
+#define CONST const
 
 
 
@@ -83,6 +97,8 @@ typedef  INT64  INTN;
 #define  INTN_MAX ((1 << 63) - 1)
 
 #endif
+
+
 
 
 #endif

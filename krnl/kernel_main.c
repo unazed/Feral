@@ -7,7 +7,7 @@
  *	Brian Schnepp [author]
  */
 
-#include <hardabs/multiboot.h>
+#include <hardabs/bootstruct.h>
 
 void Kernel_Main(FeralBoot_Header* header)
 {

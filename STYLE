@@ -3,6 +3,13 @@ General style guidelines
 _____
 
 
+__________________________
+IF YOU EVER HAVE MACHINE-DEPENDANT CODE, STICK IT IN THE HARDWARE ABSTRACTION LAYER OF THE RELEVANT PLATFORM.
+ABSOLUTELY
+NO
+EXCEPTIONS.
+__________________________
+
 
 System calls, commonly used functions, etc should always be defined with the <PREFIX> <OBJECT> <ACTION> order.
 (Extensions to that specifically are OK though.)

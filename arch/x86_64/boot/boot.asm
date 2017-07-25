@@ -37,7 +37,7 @@ _kinit:
 
 	extern KElfLoader		; Kernel_Main defined in main.c...	;Switch to instead target an ELF loader which then loads the kernel.
 	call   KElfLoader		; Jump to kernel's main code...		;The loader is defined in hardabs.c. We shouldn't return.
-	cli									;Kernel shutdown routine TODO.
+	cli									;Kernel shutdown routine TODO. (dirty easy hack would be to intentionally corrupt GDT, and thus triple fault)
 	hlt
 
 .hang:
@@ -47,53 +47,5 @@ _kinit:
 
 
 ;TODO: Switch to 64-bit mode, and THEN load the kernel. This is so we can keep the kernel as "an ordinary ELF64 executable" and be easy to swap out the bootloader.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;OLD!!!
-
-
-
-;
-; Created by Brian Schnepp
-; >> Multiboot 2 <<
-; Contributors:
-	; 
-
-;[BITS 64]
-
-;extern Kernel_Main
-
-;MAGIC_NUM 	equ 0xE85250D6
-;ARCHITECTURE 	equ 1
-
-
-;Will probably replace this with a stub to switch to 64-bit mode... and multiboot 1.
-
-;hdr_start:
-;	dd MAGIC_NUM						; Magic number for multiboot 2...
-;	dd ARCHITECTURE						; This is a guess. Trying to get x86_64...
-;	dd hdr_end - hdr_start					; Size of the header total...
-;	;dd -(MAGIC_NUM + ARCHITECTURE + (hdr_end - hdr_start))	; Checksum...??
-
-;hdr_end:
-	
+;This is also so, with a little tinkering, we can patch the Feral kernel to be able to run in userspace on Linux and all, (or even better, as a Mach server).
+;This way, you can run Feral programs and use Feral without really having a full install of the OS. I won't be the one doing those patches though.

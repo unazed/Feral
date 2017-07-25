@@ -3,11 +3,6 @@
 
 #include <feral/feralobjs.h>
 
-struct Multiboot_Header
-{
-	//TODO!!!
-}Multiboot_Header;
-
 
 /* 
 	This is a portable boot header. We translate from multiboot/EFI/etc to this. 
