@@ -6,7 +6,7 @@
  * Contributors:
  *	Brian Schnepp [author]
  */
-#include <nyx/size_abstract.h>
+#include <feral/feralobjs.h>
 
 /* CPU stuff */
 typedef INT32 CpuType;
