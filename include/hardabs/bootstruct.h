@@ -9,7 +9,7 @@
 	How we actually do that is uhhhh...? We might have to end up calling Kernel_Main indirectly.
 */
 
-typedef struct FeralBoot_Header
+typedef struct _FeralBoot_Header
 {
 	UINTN  RamAmount;
 	
@@ -21,6 +21,6 @@ typedef struct FeralBoot_Header
 	CHAR8* KernelArguments;
 
 	//TODO...
-}
+}FeralBoot_Header;
 
 #endif

@@ -9,7 +9,7 @@
 
 /* Define the common stuff we need for VGA/VESA/Whatever support. */
 
-#include <nyx/size_abstract.h>
+#include <feral/feralobjs.h>
 
 //Pretty sure this is right. Need to refer back to the article on it or whatever.
 #define CreateColorPair(UINT8 fg, UINT8 bg)	((UINT16)(fg) + (bg << 16))
