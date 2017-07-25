@@ -82,6 +82,9 @@ void KElfLoader(MultibootHeader* header)
 	//Load it up!
 	//We have no malloc() or free(), so we have to do everything on the stack.
 
+	// The kernel is expected to be just an ordinary ELF64 shared object named 'floskrnl'.
+	// Something we'll do later is add encryption protection and all that.
+
 	ElfHeader* header;
 	
 

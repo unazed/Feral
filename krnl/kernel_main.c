@@ -9,6 +9,10 @@
 
 #include <hardabs/bootstruct.h>
 
+
+
+#include "mach_types.h"
+
 void Kernel_Main(FeralBoot_Header* header)
 {
 	//Hello, world!!

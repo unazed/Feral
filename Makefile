@@ -11,7 +11,9 @@ export TRIPLE = $(ARCH)-unknown-none-gnu
 export ROOT = $(shell readlink -f .)
 
 ##Intentionally leave out the first '-I' so this looks natural.
-export INCLUDE = $(ROOT)/include -I($ROOT)/sdk
+export INCLUDE 				= $(ROOT)/include -I$(ROOT)/include/sdk
+export INCLUDE_INTERNAL 		= $(ROOT)/krnl_internal
+export INCLUDE_USERSPACE 		= $(ROOT)/include/userspace
 
 ##I'm really bad at makefiles. Fix this later.
 OBJS = 		bootstrap.o	\
@@ -31,14 +33,15 @@ EFI_GOAL       = floskldr
 
 export BUILD_DIR = $(shell readlink -f build/)
 
-all:
+all:	make_build_dir
 	##$(MAKE) libnyx/
 	##$(MAKE) libthreads/
-	mkdir -p build/
 	cd arch/$(ARCH)/ && $(MAKE) 
 
 clean:
 	rm -rf build/
 
+make_build_dir:
+	mkdir -p build/
 	
 	

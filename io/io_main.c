@@ -15,6 +15,11 @@
 
 //Create structures for files and whatnot...
 
+struct _IoRequest
+{
+	//TODO...
+}IoRequest;
+
 
 #endif
 
