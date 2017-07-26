@@ -1,4 +1,15 @@
+/* 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ *
+ * Contributors:	
+ *	Brian Schnepp	[author]
+ */
+
+
 #include "multiboot.h"
+#include "mbstdio.h"
 
 #include <hardabs/bootstruct.h>
 #include <feral/feralobjs.h>
@@ -74,10 +85,25 @@ enum ElfType
 /////////////////////////////////////////////////////////////////////
 
 
+#if 0
+typedef struct _FeralBoot_Header
+{
+	UINTN  RamAmount;
+	
+	UINTN  ScreenWidth;
+	UINTN  ScreenHeight;
+	UINT8  isTextMode;
+
+	VOID*  VideoMemAddr;
+	CHAR8* KernelArguments;
+
+	//TODO...
+}FeralBoot_Header;
+#endif
 
 /* Kernel loader. */
 
-void KElfLoader(MultibootHeader* header)
+void KElfLoader(MultibootInfo* header)
 {
 	//Load it up!
 	//We have no malloc() or free(), so we have to do everything on the stack.
@@ -86,8 +112,13 @@ void KElfLoader(MultibootHeader* header)
 	// Something we'll do later is add encryption protection and all that.
 
 	ElfHeader* header;
+	FeralBoot_Header* header;
 	
 
 	//Inline ASM to switch to 64-bit, prep the kernel, load!
 	return;
 }
+
+
+
+
