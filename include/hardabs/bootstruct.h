@@ -20,7 +20,7 @@
 
 typedef struct _FeralBoot_Header
 {
-	UINTN  RamAmount;
+	UINT64  RamAmount;
 	
 	UINTN  ScreenWidth;
 	UINTN  ScreenHeight;

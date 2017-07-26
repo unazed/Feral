@@ -15,11 +15,15 @@
 #include <feral/feralobjs.h>
 
 
-/* Ripped from the old FeralBoot. */
+/* 
+	Ripped from the old FeralBoot. 
+ 
+	Here, we assume we're trying to load an ELF64
+	executable simply because that's what I'm 
+	using it for, and don't want to bloat
+	the final image by having stuff everywhere.	
+ */
 #define E_IDENTC 16
-
-
-
 
 struct ElfHeader
 {
@@ -30,9 +34,9 @@ struct ElfHeader
 
 	UINT32 e_version;
 
-	UINTN e_entry;
-	UINTN e_phoff;
-	UINTN e_shoff;
+	UINT64 e_entry;
+	UINT64 e_phoff;
+	UINT64 e_shoff;
 
 	UINT32 e_flags;
 
@@ -49,12 +53,12 @@ struct ElfProgramHeader
 	UINT32 p_type;
 	UINT32 p_flags;
 	
-	UINTN  p_offset;
-	UINTN  p_vaddr;
-	UINTN  p_paddr;
-	UINTN  p_filesz;
-	UINTN  p_memsz;
-	UINTN  p_align;
+	UINT64  p_offset;
+	UINT64  p_vaddr;
+	UINT64  p_paddr;
+	UINT64  p_filesz;
+	UINT64  p_memsz;
+	UINT64  p_align;
 }ElfProgramHeader;
 
 struct ElfSectionHeader
@@ -62,16 +66,16 @@ struct ElfSectionHeader
 	UINT32 sh_name;
 	UINT32 sh_type;
 	
-	UINTN  sh_flags;
-	UINTN  sh_addr;
-	UINTN  sh_offset;
-	UINTN  sh_size;
+	UINT64  sh_flags;
+	UINT64  sh_addr;
+	UINT64  sh_offset;
+	UINT64  sh_size;
 
 	UINT32 sh_link;
 	UINT32 sh_info;
 
-	UINTN  sh_addralign;
-	UINTN  sh_entsize;
+	UINT64  sh_addralign;
+	UINT64  sh_entsize;
 }ElfSectionHeader;
 
 enum ElfType
@@ -79,7 +83,7 @@ enum ElfType
 	ET_NONE = 0,
 	ET_REL = 1,
 	ET_EXEC = 2,
-	ET_SHARED = 3,
+	ET_SHARED = 3,	
 	ET_CORE = 4	//This is used for program memory dumps
 };
 /////////////////////////////////////////////////////////////////////
@@ -102,6 +106,8 @@ typedef struct _FeralBoot_Header
 #endif
 
 /* Kernel loader. */
+ElfHeader        elf_header;
+FeralBoot_Header frl_header;
 
 void KElfLoader(MultibootInfo* header)
 {
@@ -111,8 +117,10 @@ void KElfLoader(MultibootInfo* header)
 	// The kernel is expected to be just an ordinary ELF64 shared object named 'floskrnl'.
 	// Something we'll do later is add encryption protection and all that.
 
-	ElfHeader* header;
-	FeralBoot_Header* header;
+
+	MemoryMap* map = header->MemMapAddress;
+	//I think this is how that works?
+	frl_header->RamAmount = ((map->LengthHigh << 32) | (LengthLow));
 	
 
 	//Inline ASM to switch to 64-bit, prep the kernel, load!
