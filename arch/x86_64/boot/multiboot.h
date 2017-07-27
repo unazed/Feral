@@ -13,6 +13,10 @@
 #include <feral/feralobjs.h>
 
 
+/* This is set if there's bootloader modules to worry about. */
+#define MULTIBOOT_INFO_MODS		0x00000008
+
+
 typedef struct _MemoryMap
 {
 	UINT32 Size;

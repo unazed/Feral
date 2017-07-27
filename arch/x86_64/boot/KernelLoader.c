@@ -88,6 +88,16 @@ enum ElfType
 };
 /////////////////////////////////////////////////////////////////////
 
+///
+/*
+	To boot the real kernel, we need to embed a mini "fake kernel" into here,
+	It just needs to be able to allocate memory, read an ext4 or FAT32 partition or something,
+	load the kernel, and then pretend that it doesn't exist.
+ */
+
+
+
+///
 
 #if 0
 typedef struct _FeralBoot_Header
@@ -117,6 +127,24 @@ void KElfLoader(MultibootInfo* header)
 	// The kernel is expected to be just an ordinary ELF64 shared object named 'floskrnl'.
 	// Something we'll do later is add encryption protection and all that.
 
+	// We might have to redo all of this, since we'll probably need a 32-bit GDT and all.
+
+	UINT32 mb_flags = header->Flags;
+	if (MULTIBOOT_INFO_MODS & mb_glags)
+	{
+		UINT32 ModsCount = header->ModsCount;
+		UINT32 ModsEntry = header->ModsAddress;
+
+		for (UINTN i = 0; i < ModsCount; i++)
+		{
+			size_t sz_MBModStruct = sizeof(Module);
+			Module* mod = (Module*)(ModsAddress + (i * sz_MBModStruct));	/* Loop through all the modules */
+			//TODO: Do something with them!
+		}
+
+	}
+	
+	VOID* Kernel_Main;	// Entry into the kernel.
 
 	MemoryMap* map = header->MemMapAddress;
 	//I think this is how that works?
