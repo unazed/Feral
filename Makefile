@@ -8,7 +8,11 @@ export ARCH = x86_64
 
 export TRIPLE = $(ARCH)-unknown-none-gnu
 
+export CSTD = -std=c11 -Wall -Werror -Wconversion	##Embed these here so we don't forget.
+
 export ROOT = $(shell readlink -f .)
+
+##Some thing we'll probably need to do is try to figure out how to force Aarch64 to be ONLY little-endian, without performance penalty checking all the time.
 
 ##Intentionally leave out the first '-I' so this looks natural.
 export INCLUDE 				= $(ROOT)/include -I$(ROOT)/include/sdk
