@@ -7,16 +7,14 @@
  *	Brian Schnepp	[author]
  */
 
+#ifndef _MB_STDIO_H_
+#define _MB_STDIO_H_
 
-#ifndef _HARDABS_BOOT_MULTIBOOT_H_
-#define _HARDABS_BOOT_MULTIBOOT_H_
+#include <feral/feralobjs.h>
 
-
-
-
+void* malloc(size_t size);
+void   free(void* object);
 
 
 
 #endif
-
-

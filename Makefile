@@ -12,6 +12,11 @@ export CSTD = -std=c11 -Wall -Werror -Wconversion	##Embed these here so we don't
 
 export ROOT = $(shell readlink -f .)
 
+## Adjective + Animal. My display driver keeps crashing. Actually really annoying. Hard to edit files when the screen goes black when you type!
+CODENAME = Angry Aligator
+RELEASE_CANIDATE = -rc-1000	##Negative 1000 since we're not even closed to finished.
+
+
 ##Some thing we'll probably need to do is try to figure out how to force Aarch64 to be ONLY little-endian, without performance penalty checking all the time.
 
 ##Intentionally leave out the first '-I' so this looks natural.

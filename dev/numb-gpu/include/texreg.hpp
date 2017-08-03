@@ -8,15 +8,14 @@
  */
 
 
-#ifndef _HARDABS_BOOT_MULTIBOOT_H_
-#define _HARDABS_BOOT_MULTIBOOT_H_
+class TextureRegister
+{
+public:
+	TextureRegister();
+	virtual ~TextureRegister();
 
-
-
-
-
-
-
-#endif
-
-
+private:
+	int TexWidth;
+	int TexHeight;
+	int TexChannels;
+};

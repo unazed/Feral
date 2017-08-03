@@ -7,16 +7,4 @@
  *	Brian Schnepp	[author]
  */
 
-
-#ifndef _HARDABS_BOOT_MULTIBOOT_H_
-#define _HARDABS_BOOT_MULTIBOOT_H_
-
-
-
-
-
-
-
-#endif
-
-
+//TODO!!!
