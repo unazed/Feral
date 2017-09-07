@@ -43,7 +43,7 @@ GOAL           = FERALKER.NEL
 
 export BUILD_DIR = $(shell readlink -f build/)
 
-all:	make_build_dir
+all:	build_dir
 	##$(MAKE) libnyx/
 	##$(MAKE) libthreads/
 	##TODO: Point instead to /base/feral/hals/x86-64/halboot...

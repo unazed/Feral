@@ -35,13 +35,13 @@ multiboot_end:
 
 start:
 	cli			# Interrupts here are the bane of all existance!
-	movl _earlystack, %esp	# Set up the bootstrapping stack we need.
+	movl sstack, %esp	# Set up the bootstrapping stack we need.
 	pushl %ebx		# Push the multiboot struct header we'll need...
 	call main		# Call the main() function. Kernel should enable interrupts as it sees fit.
 	
 hang:
-	jmp .			# We shouldn't ever return.
+	jmp hang		# We shouldn't ever return.
 
 .section stack
 	.fill 8192, 1, 0
-	
+sstack:
