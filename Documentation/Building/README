@@ -4,6 +4,8 @@ Ensure you have nasm, clang, lld, and bmake installed. The kernel will NOT build
 We do that to ensure we have NO GPL DEPENDENCIES REQUIRED TO BUILD THE KERNEL AT ALL, so that extensions to the kernel can be pretty much under whatever license you want.
 (Hence MPL, not GPL or LGPL)
 
-After that, you should get a file called 'floskrnl' and 'flbooter', 
+After that, you should get a file called 'FERALKER.NEL'. This should be mounted to the root of the fake disk created with 'make test'.
+
+To test in QEMU, ensure you have qemu-system-x86_64 installed and your system is capable of KVM, then run make test.
 
 [INSTRUCTIONS TODO]

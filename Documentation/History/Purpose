@@ -12,7 +12,7 @@ I'd like to add to Linux of course, but it's just so big and massive and I don't
 (Plus adding to the Linux kernel to get good at C isn't the greatest thing to do)
 
 So, Waypoint is this project of mine to have:
-	- A new free software* operating system free from the GPL (which gets in the way too much of video card driver ports)
+	- A new free software operating system free from the GPL (which gets in the way too much of video card driver ports)
 	- A new operating system built from the grond-up for realtime 3D applications, (ie, games, but possibly also suitable for CAD and whatnot too).
 	- A project to learn more about operating systems from what's probably the best perspective to do so. (We're interested in going FAST, not architectural aesthetics (ie, microkernel))
 	- Something to get better at C, assembly, etc. Can we write some modules of the kernel in C++ and Rust too? Seems bloaty and arbitrary, but why not..?

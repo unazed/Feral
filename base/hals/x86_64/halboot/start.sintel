@@ -1,0 +1,57 @@
+; We test on a ZEN 1700X, but would be GREAT to also work on 1900+ desktop CPUs and especially Naples server CPUs.
+; Obviously, I can't afford those processors, but if we scale well for 8, the logic goes we'll scale well for 16 and 32 cores too if we design intelligently.
+; We're not going to kill Linux in the server, but Feral as the core for AI research would be great, or for other high-performance server stuff or something.
+
+
+; Wrote in Blue syntax first because GNU syntax is strange.
+
+[BITS 32]
+[GLOBAL start]
+[GLOBAL multiboot]
+[EXTERN main]
+
+MBOOT_MAGIC EQU 0xE85250D6
+MBOOT_ARCH_LEGACY EQU 0x0
+MBOOT_SIZE EQU (multiboot_end - multiboot)
+
+; This is somewhat of a math kludge to get the field to fit as intended.
+MBOOT_CHECKSUM EQU (0 - MBOOT_MAGIC - MBOOT_ARCH_LEGACY - (multiboot_end - multiboot)) & 0xFFFFFFFF
+
+[EXTERN code]
+[EXTERN bss] 
+[EXTERN end]
+
+ALIGN 4
+[SECTION .text]
+
+multiboot:
+	dd MBOOT_MAGIC
+	dd MBOOT_ARCH_LEGACY
+	dd MBOOT_SIZE
+	dd MBOOT_CHECKSUM
+
+	dd  multiboot
+	dd  code
+	dd  bss
+	dd  end
+	dd  start
+
+multiboot_end:
+
+start:
+	cli		;We don't want interrupts here.
+	mov esp, sstack	;Should be plenty for the stack here.
+	push ebx	;Make sure the Multiboot struct pointer is preserved.
+	call main	;Call the kernel's main function.
+
+hang:
+			;We don't expect to ever return from the kernel. If we do, something's gone VERY wrong.
+	jmp hang	;Return to there if need be. We could also do 'jmp $' but I don't like symbols everywhere.
+
+
+;Bootstrapping area stack.
+
+[SECTION .stack]
+	times 16384 db 0	;Give us a stack of 16KB. Should be plenty for now.
+				;Remember that for x86, stack needs to be referenced at the BOTTOM, not the top.
+sstack:
