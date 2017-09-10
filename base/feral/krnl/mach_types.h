@@ -8,6 +8,8 @@
  */
 #include <feral/feralobjs.h>
 
+
+
 /* CPU stuff */
 typedef INT32 CpuType;
 typedef INT32 CpuSubtype;
@@ -28,11 +30,11 @@ typedef INT32 CpuSubtype;
 #define CPU_TYPE_X86_32  ((CpuType) 7              )
 #define CPU_TYPE_ARM_32  ((CpuType) 12             )
 
-#define CPU_TYPE_X86_64  ((CpuType) CPU_64_BIT + 7 )
-#define CPU_TYPE_AArch64 ((CpuType) CPU_64_BIT + 12)
+#define CPU_TYPE_X86_64  ((CpuType) CPU_64_BIT | 7 )
+#define CPU_TYPE_AArch64 ((CpuType) CPU_64_BIT | 12)
 
 #define CPU_TYPE_PPC     ((CpuType) 18             )
-#define CPU_TYPE_PPC_64  ((CpuType) CPU_64_BIT + 18)
+#define CPU_TYPE_PPC_64  ((CpuType) CPU_64_BIT | 18)
 
 /* Subtypes: some CPUs can be in either little-endian or big-endian mode.*/
 #define CPU_SUBTYPE_MULTIPLE      ((CpuSubtype) -1)
@@ -51,7 +53,7 @@ typedef UINTN VmSize;
 
 
 
-/* Information about the machine. Imitating mach/machine.h */
+/* Information about the machine. Imitating mach/machine.h We might just dump this in favor of getting rid of the Mach imiation stuff entirely. */
 typedef struct MachineInfo
 {
 	INT32 MajorVersion;	/* Major version of the kernel (>0<.1, >1<.0, >10<.12, etc)    */
