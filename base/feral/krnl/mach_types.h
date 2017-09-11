@@ -9,6 +9,8 @@
 #include <feral/feralobjs.h>
 
 
+//DEPRECATE!!!!
+
 
 /* CPU stuff */
 typedef INT32 CpuType;

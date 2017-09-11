@@ -1,0 +1,3 @@
+## We need to build the actual kernel before we can be of much use to HAL here...
+
+INCLUDE_PRIVATE = Includepriv
