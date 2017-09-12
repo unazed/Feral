@@ -7,10 +7,10 @@
  *	Brian Schnepp [author]
  */
 
-#ifndef _LIB_NYX_ELF_H_
-#define _LIB_NYX_ELF_H_
+#ifndef _FERAL_ELF_H_
+#define _FERAL_ELF_H_
 
-#include <feral/feralobjs.h>
+#include <feral/feralstd.h>
 
 #pragma pack(1)
 //Wrong names for lots of fields. Meh.
@@ -25,7 +25,7 @@ typedef enum
 
 typedef struct _ElfHeader
 {
-	UINT32 magic;	//MachO magic number...
+	UINT32 magic;	//ELF magic number...
 	UINT8  cpu_bitsz;
 	UINT8  cpu_endian;
 	UINT8  e_version;

@@ -1,0 +1,11 @@
+Subject to change and all that. Making a mess here, need to clean up all the text documents and give them some concistency and all.
+
+
+Main things to note and care about:
+	Once we are in kernel-mode, we don't want to switch out of kernel mode unless it's the best thing for performance.
+	Efficiency through functionality: Instead of adding a bunch of cases into the kernel, let user-space programs manage it, and make several system calls instead.
+		(We want to avoid execution time in the kernel as much as we can.)
+	Feral should have some sort of kernel-mode hypervisor which 'talks KVM', for paravirtualization. The cloud, like it or not, is probably the future for a lot of less-critical applications.
+	GPU drivers, at the very least, better be VERY fast. We want games to perform at the very best they can.
+		(We'd better wipe the floor with a certain hybrid kernel for game performance...)
+	Driver dynamic loading isn't something to particularly care a lot about, but shouldn't be hamstringed.

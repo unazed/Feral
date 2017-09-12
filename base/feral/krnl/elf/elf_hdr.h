@@ -12,7 +12,7 @@
 #ifndef _KERNEL_ELF_HDR_
 #define _KERNEL_ELF_HDR_
 
-#include "macho_types.h"
+#include <feral/feralstd.h>
 
 
 struct
@@ -24,7 +24,7 @@ struct
 	UINT64 NCmds;
 	UINT64 SizeOfCmds;
 	UINT64 Flags;
-}MachHeader;
+}ElfHeader;
 
 
 

@@ -6,7 +6,25 @@
  * Contributors:
  *	Brian Schnepp [author]
  */
+#ifndef _FERAL_FERAL_EXEC_H_
+#define _FERAL_FERAL_EXEC_H_
 
+#include <feral/feralstd.h>
+
+/* This is for if someone want to create a MachO, PE/COFF, etc. loader for Feral... */
+typedef enum _ExecutableFormats
+{
+	ELF_FORMAT  = 0x0,	/* Feral does this, as this is the 'native format'. */
+	MACH_FORMAT = 0x1,
+	COFF_FORMAT = 0x2,
+	PE_FORMAT   = 0x3,
+	AOUT_FORMAT = 0x4
+}ExecutableFormats;
+
+#endif
+
+
+#if 0
 #ifndef _LIB_NYX_EXEC_H_
 #define _LIB_NYX_EXEC_H_
 
@@ -68,4 +86,8 @@ typedef struct
 	/* TODO: locations in memory and all... */
 }ExecInfo;
 
+
+
+
+#endif
 #endif

@@ -1,8 +1,11 @@
+__
 Well, I don't like injecting ideology into things, so I guess I'll keep this short, simple, etc.
 
 The big thing I want to do with Waypoint is to really learn how operating systems work, what can make them more effective (in the sense of better performance), etc. etc.
 By no means is the quality of code here very particularly high or anything, it's just enough to be considered "useful", but not necessarilly "Put this in the Linux kernel now!".
 (Dumb inefficient ways of doing things should be avoided, because they don't really help anything to be bad in the first place, you know it's bad, and you know how to make it better.)
+(That, and we have different design goals from Linux anyway. Because context switches are expensive, we want to have A LOT of system calls and each with A LOT of parameters, to avoid having to do a system call then immediately do another system call, which wastes CPU cycles and hinders performance. We actually want to bloat the kernel as big as it can get, just make sure we're VERY efficient and VERY fast, as in 'this is good for a supercomputer doing AI research' kind of efficient. The less games have to call the kernel, the better.)
+
 
 It's not really serious or anything like that. Something to keep me busy because I hate not having something to work on or do. Time is wasted doing nothing when that happens instead of making progress on SOMETHING.
 
