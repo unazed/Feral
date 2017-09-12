@@ -1,3 +1,29 @@
+BIG TODO: MAKE THIS WHOLE DIRECTORY NOT A BIG GIANT MESS.
+
+Some design considerations we'll need to think about:
+
+Feral should run (and have in mind when designing the kernel) on x86_64 natively.
+We will also assume the processor in question to have implemented everything ZEN Version 1 has.
+We'll make extensive use of hardware hashing (SHA and AES), CLZERO, and other instructions.
+	(These might have to be binary blobs written with a hex editor because YASM might not support it...)
+
+Feral should also be ported to run on Aarch64 processors. A port to Aarch32 is also up for consideration, but I wouldn't be willing to put much effort into it. (Too much time wasted for an architecture that's likely to be dead or dying in favor of it's 64-bit successor by the time Feral is of any serious use for smartphones and wearable devices.)
+
+The Quark processor from Team Blue, for whatever reason, is still a 32-bit x86 chip that's essentially a really small i686. A port to this (considering how closely tied we are with ZEN) is likely impossible without a signifigant #ifdef #endif mess around the kernel (or having a separate i686 directory, in which case we'll be lazy, glue Mach's abstraction layer in, translate that to act like the rest of the HALs, and call that good enough.) 32-bit x86 for personal computers is dead (Feral is NOT a replacement for any machines still running Mach 4, it's been 20 years.), no reason to support it on a brand new kernel. i686 version should only exist if the Quark SoC gets signifigant share into wearable devices or something. As such, since Red and Blue (and that one plastics company in the Republic of China), are the only ones who make x86_64 processors to my knowledge, we can simplify checking against differences by simply saying "if it aint Red and Zen, not supported." and going until we get into some crazy logic error or something, which will probably happen when we do hardware hashing or use more of Red's extensions that Blue doesn't also have.
+(Plus, Red is MUCH cheaper for great performance.)
+
+
+
+
+
+
+
+
+
+
+
+
+__________________________
 Work on Multiboot 2 compliance.
 Memory management, filesystems, everything.
 Reference whatever's needed.

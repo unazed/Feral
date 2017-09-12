@@ -1,0 +1,29 @@
+Some requirements for the scheduler:
+	- Adding/Removing a task MUST be an O(1) operation.
+	- We should try to get scheduling to efficiently use the resources we have...
+	- We shouldn't EVER have the computer appear to 'slow down' when a new task is created.
+
+	- CreateProcess() and fork()+exec() wastes too much CPU time. Rethink these ideas.
+		- Figure out a way to avoid copying memory as much as possible. That's too slow.
+
+
+
+The first idea that pops in is to use a doubly? linked list to handle process management, ~~'pop' the next process off the list, and when it's done (but not terminated), push it to the end of the list.... (and have 'next' point to the first in the list)~~ it's actually more of a circular structure which can be extended and added to as needed. as if there's only one userspace program (say, 'notsystemd.pro' running), it actually points to itself until a program decides to start and modify the end points and all.
+
+This keeps the deterministic behavior (which we need for games), still allows us to have unlimited task count (theoretically), and doesn't need to use some big long mess.
+
+
+Pseudocode for that would be along the lines of:
+void KeAllocateTask(FeralTask* task)
+{
+	FeralTask* root = root;			/* Defined elsewhere.    */
+	FeralTask* prev = root->prev;		/* Get the previous one. */
+	FeralTask* next = root->next;		/* Get the next one.     */
+
+	/* Previous from root is always the last task on the list. */
+	task->next = root;		/* Wait until everyone else gets their turn to start. */
+	task->prev = root->prev;	/* "Promotes" the last entry to run before it. */	
+	root->prev = task;		/* Declare the new task as the last task to be run. */
+}
+
+

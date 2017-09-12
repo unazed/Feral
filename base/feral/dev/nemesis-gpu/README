@@ -3,3 +3,7 @@ Name is a reference to the Greek name of the same mythological character which g
 
 Since I don't actually have any of these GPUs, please copy code from stargazer-gpu and rewrite it for Team Green, as I am unable to do so
 without the actual physical hardware to test with.
+
+We'll peek at Nouveau, reimplement drivers, and try to get things to work well.
+Optimize optimize optimize!
+
