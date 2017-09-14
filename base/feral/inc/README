@@ -1,0 +1,3 @@
+This is for "private includes" -- things which are VERY unstable, and are only meant for portions of the kernel to 'talk' to each other.
+
+Drivers should instead use the Driver Development Kit (Include/ddk) (currently ddk_unstable).

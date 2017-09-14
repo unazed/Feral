@@ -2,3 +2,6 @@ TODO port of TCP/IP stack from FreeBSD.
 
 Possibly write a new one from scratch???
 Who knows.
+May involve trying to get something kinda like NDISwrapper for modern hardware.
+Doesn't seem all the fun.
+Yay!

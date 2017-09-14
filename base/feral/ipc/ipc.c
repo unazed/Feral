@@ -1,13 +1,14 @@
-/* 
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * Contributors:	
+ * Contributors:
  *	Brian Schnepp	[author]
  */
 
-#include <feral/feralobjs.h>	
+#if 0
+#include <feral/feralobjs.h>
 #include <krnl/management/task.h>
 
 
@@ -24,8 +25,10 @@ FeralIpcMapping* KeAllocateIpcSpace(FeralTask processA, FeralTask processB, UINT
 //We have to obsess over the little things. If it isn't 256% better, not worth the effort. 100% doesn't cut it.
 
 
+#endif /* Too lazy to get rid of entirely... */
 
 
+#include <feral/feralstd.h>
 
-
+//TODO...
 

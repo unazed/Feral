@@ -1,14 +1,29 @@
-/* 
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
  * Contributors:
  *	Brian Schnepp [author]
  */
 
+#include <feral/feralstd.h>
+#include <feral/screen.h>
 #include <error/stop_error.h>
 
+
+VOID KeStopError(INT64 errorcode)
+{
+	KeClearScreen(0x000000FF);
+	KePrintScreen("An unexpected error has occured and the kernel shutdown to prevent damage to your computer.");
+	for (;;){};
+	return;
+}
+
+
+
+
+#if 0
 
 VOID DefaultStopErrorFunction(UINTN error_code, UINT8* string_to_display)
 {
@@ -35,3 +50,4 @@ static struct StopErrorMgr* CreateSystemMgr(VOID* Func, UINTN** ErrorCodes, UINT
 	mgr.ArrayOfErrorCodes = {{0}};
 	mgr.ArrayOfStringsToDisplayOnError = {{"Unspecified error!"}};
 }
+#endif

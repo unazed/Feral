@@ -1,7 +1,7 @@
-/* 
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
  * Contributors:
  *	Brian Schnepp [author]
@@ -24,7 +24,7 @@ void Kernel_Main(FeralBoot_Header* header)
 	for (;;){};	//Temporary!!
 }
 
-
+/* TODO: Redo all of this as an enum instead. Much easier... */
 #define KISTARTUP_FORCE_DEBUG_MODE_BIT  (0x01000000                                 )
 
 #define KISTARTUP_FORCE_USE_VGA_DRIVER  (0x00000001 | KISTARTUP_FORCE_DEBUG_MODE_BIT)	/* Force the system to ignore graphics drivers, relying on VGA graphics instead. glNEXT disabled. */
@@ -40,8 +40,8 @@ void Kernel_Main(FeralBoot_Header* header)
 typedef uint32_t FERALBOOTFLAGS;
 
 
-/* 
-	In-kernel utility functions should NOT follow the function naming convention for stable functions. 
+/*
+	In-kernel utility functions should NOT follow the function naming convention for stable functions.
 	If the two strings are exactly identical, the returned value will be the string length of the shorter string.
  */
 int krnldiffstr(char* string, char* string1)
@@ -72,8 +72,7 @@ typedef struct _FERAL_KERNEL_SYSTEM_INFO
 {
 	UINTN NumberOfProcessors;
 	UINTN NumberOfThreads;
-
-	
+	UINTN AmountOfMemory;
 }FERAL_KERNEL_SYSTEM_INFO;
 
 

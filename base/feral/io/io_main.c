@@ -1,12 +1,13 @@
-/* 
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * Contributors:	
+ * Contributors:
  *	Brian Schnepp	[author]
  */
 
+#if 0
 
 #include "../feral_syscalls.h"
 
@@ -23,3 +24,4 @@ struct _IoRequest
 
 #endif
 
+#endif
