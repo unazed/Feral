@@ -6,10 +6,10 @@
 .globl multiboot		# This is where the Multiboot information is at.
 .extern Kernel_Main		# We expect 'main' for the main function of the kernel. Perhaps change to 'KiKernelMain' (This calls KiSystemStartup()...).
 
-#define MBOOT_MAGIC 		0xE85250D6
-#define MBOOT_ARCH_LEGACY	0x00000000	# This gives us 32-bit mode, we switch to 64.
-#define MBOOT_SIZE		(multiboot_end - multiboot)
-#define MBOOT_CHECKSUM		(0 - MBOOT_MAGIC - MBOOT_ARCH_LEGACY - (multiboot_end - multiboot)) & 0xFFFFFFFF
+.set MBOOT_MAGIC, 		0xE85250D6
+.set MBOOT_ARCH_LEGACY,		0x00000000	# This gives us 32-bit mode, we switch to 64.
+.set MBOOT_SIZE,		(multiboot_end - multiboot)
+.set MBOOT_CHECKSUM,		(0 - MBOOT_MAGIC - MBOOT_ARCH_LEGACY - (multiboot_end - multiboot)) & 0xFFFFFFFF
 
 # '.long' is the same as 'dd'. '.quad' is the same as 'dq'. We do <<source, dest>> because unintuitive things are cool? GNU syntax is strange.
 
@@ -67,19 +67,11 @@ hang:
 
 disable_paging:
 	movl %cr0, %eax		# Move the contents of the control register to eax.
-	andl $0x7FFFFFFFF, %eax	# Clear the paging bit.
+	andl $0x7FFFFFFF, %eax	# Clear the paging bit.
 	movl %eax, %cr0		# Move EAX back into CR0.
 
 	## TODO...
 	ret
-
-.section .bss
-stack:
-	.align 16
-	.fill 16384, 1, 0	# Should be plenty of room here with a 16KiB stack.
-sstack:
-end:
-
 
 enter_long_mode:
 	call disable_paging
@@ -100,7 +92,7 @@ enter_long_mode:
 	movl %edi, %cr3		# Put this into control register 3.
 	xorl %eax, %eax		# Purge EAX's contents.
 	movl $0x1000, %ecx	# Set ECX to 4096.
-	rep stosd		# Pretty sure this is right?
+	rep stosl		# Pretty sure this is right?
 	mov %cr3, %edi		# Move the value back into EDI.
 
 	# We're now going to need to set up the tables as we see fit.
@@ -128,7 +120,15 @@ enter_long_mode:
 
 enable_pae:
 	movl %cr4, %eax		# Move into EAX.
-	orl $10000b, %eax	# Flip the bit on.
+	orl $0x20, %eax	# Flip the bit on.
 	mov %eax, %cr4		# Give it back.
 
 
+
+
+.section .bss
+stack:
+	.align 16
+	.fill 16384, 1, 0	# Should be plenty of room here with a 16KiB stack.
+sstack:
+end:
