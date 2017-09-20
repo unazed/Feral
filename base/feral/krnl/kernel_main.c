@@ -13,8 +13,9 @@
 #include <hardabs/bootstruct.h>
 
 //TODO: Purge the kernel of anything trying to imitate Mach in kernel-space in favor or something that doesn't feel glued on.
-#include "mach_types.h"
+//#include "mach_types.h"
 
+#include "feral_types.h"
 
 
 void Kernel_Main(FeralBoot_Header* header)
@@ -67,13 +68,6 @@ int krnlstrlen(char* string)
 	}
 	return len;
 }
-
-typedef struct _FERAL_KERNEL_SYSTEM_INFO
-{
-	UINTN NumberOfProcessors;
-	UINTN NumberOfThreads;
-	UINTN AmountOfMemory;
-}FERAL_KERNEL_SYSTEM_INFO;
 
 
 void KiSystemStartup(int argc, char* argv[])

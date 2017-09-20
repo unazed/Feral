@@ -32,4 +32,4 @@ typedef struct _FeralRights
 
 /* Create FeralRights for reference in something. */
 FeralRights* CreateFeralRights(UINT8 Read, UINT8 Write, UINT8 Execute, UINT8 Modify, BOOL UserOrGroup, WIDESTRING Name);
-
+VOID DeleteFeralRights(FeralRights* rights);

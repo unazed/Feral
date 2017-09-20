@@ -24,7 +24,7 @@ multiboot:
 	# Address tags Multiboot wants... did I do this right???
 addr_start:
 	.word 2				# Show that we are indeed a address tag.
-	.word 0				# No flags.
+	.word 24			# I was told to turn on these flags without any idea what these do.
 	.long (addr_end - addr_start)	# Size of this tag.
 	.long multiboot			# Multiboot's information.
 	.long text			# load_addr is where text starts.
@@ -40,6 +40,9 @@ entry_start:
 	.long start			# Where the kernel starts execution.
 entry_end:
 
+.word 0
+.word 0
+.long 8					# Multiboot expects this to be present.
 multiboot_end:
 
 .global start
@@ -50,10 +53,15 @@ start:
 	pushl %ebx		# Push the multiboot struct header we'll need...
 	pushl %eax		# The Multiboot magic value. Check if it's OK.
 
+	pushl $0		# Put 0x0 on the stack.
+	popf			# Kill the EFLAGS register.
+
 	# Here we start with setting up long mode.
 	# It's pretty important that we do this right.
 	# We're lazy and don't bother checking if the CPU is actually 64-bit or not.
 	# This will do unknown bad things to 32-bit CPUs, but I said 'use on x64', so...
+
+	jmp enter_long_mode
 
 
 	call Kernel_Main	# Call the main() function. Kernel should enable interrupts as it sees fit.
@@ -120,7 +128,7 @@ enter_long_mode:
 
 enable_pae:
 	movl %cr4, %eax		# Move into EAX.
-	orl $0x20, %eax	# Flip the bit on.
+	orl $0x20, %eax		# Flip the bit on.
 	mov %eax, %cr4		# Give it back.
 
 

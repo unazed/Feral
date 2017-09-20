@@ -3,3 +3,14 @@ Devices implemented as programs running on the computer.
 Some of this include our '/dev/random', which is actually A:/posix/root/dev/random, as well as our generic virtual GPU which utilizes (if glNEXT is not supported) the real GPU to run glNEXT code, or a CPU core to run glNEXT code very slowly.
 
 We'd rather have very slow graphics than no graphics, and since we rely on glNEXT for pretty much everything (desktop compositing and whatnot)
+
+
+
+The "native API" for talking with the GPUs is glNEXT. We do not support OGL. We do not support ReactOS' ReactX or it's proprietary workalike. 
+We aim to:
+	- Minimize overhead from drivers as much as possible, by reducing function calls.
+	- Cram the framing server in kernel-space, for performance reasons. Simply throw a bunch of commands at it, then it does the context switch and all.
+
+
+Priority is Team Red's GPUs. Blue support comes after, Green remains unsupported until official, open source reference drivers become available for Mesa.
+We do not pull or base from Mesa, we reimplement everything specifically for Waypoint. Performance overhead must be minimized as much as possible.

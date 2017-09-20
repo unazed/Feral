@@ -66,27 +66,50 @@ typedef unsigned char BYTE;
 #define LONG       INT64
 #define LONGLONG   INT64
 
+/* NIXoid support */
+#define u8  UINT8
+#define u16 UINT16
+#define u32 UINT32
+#define u64 UINT64
+
+#define s8  INT8
+#define s16 INT16
+#define s32 INT32
+#define s64 INT64
 
 
-/* 'natural_t' and 'integer_t''s use is discourged, but exists so it's easier to port drivers from Mach and it's derivatives. 							               */
-/* (ie doing crazy things like ripping apart a 20 year old OS, glue it's userspace servers in kernel-land here, apply more super-glue, and jury rig it to work on modern hardware.)            */
-/* As you can tell, I **really** don't want to write some components without having much of any idea of what I'm actually doing. So, why not borrow from an old OS? 		               */
-/* Semi-strictly want to keep everything in the kernel MPL or CC0 (or otherwise public domain). No license madness with BSD headers and MIT headers everywhere. Especially no LGPL or GPL.     */
-/* Rather rewrite whatever we wanted from *BSD from scratch but with the MPL or CC0 instead. 												       */
-#ifdef(__x86_64__)
+#if defined(__x86_64__) || defined(__Aarch64__)
 typedef UINT64 UINTN;
 typedef INT64  INTN;
-
-typedef UINT64 natural_t;
-typedef INT64  integer_t;
 #endif
 
-#ifdef(__i386__)
+#if defined(__i386__) || defined(__arm__)
 typedef UINT32 UINTN;
 typedef INT32  INTN;
+#endif
 
-typedef UINT32 natural_t;
-typedef INT32  integer_t;
+/* 
+	For people porting from Mach (2.5, 3, 4, GNU Mach, XNU/Darwin(?), MkLinux, whatever) for some reason.
+
+	Since this is less likely than awkward ports from ReactOS/forks/workalikes, #define __MACH_IMITATION_DEFINES__
+	before including this header.
+ */
+
+#ifdef __MACH_IMITATION_DEFINES__
+#define natural_t UINTN
+#define integer_t INTN
+
+/* We already assume you're building with C11, as such, C99 is implicitly included. Not ANSI and not as portable, but portability is for people who can't write new programs...!!!! */
+#define vm_offset_t 		uintptr_t
+#define vm_size_t 		uintptr_t
+
+#define mach_vm_address_t 	uintptr_t
+#define mach_vm_offset_t 	uintptr_t
+#define mach_vm_size_t 		uintptr_t
+
+#define vm_map_offset_t 	uintptr_t
+#define vm_map_address_t 	uintptr_t
+#define vm_map_size_t 		uintptr_t
 #endif
 
 /* Use of these types is also discouraged, but it makes porting drivers easier for whoever's interested.         */
