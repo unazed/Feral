@@ -61,22 +61,28 @@ start:
 
 	# Here we start with setting up long mode.
 	# It's pretty important that we do this right.
-	# We're lazy and don't bother checking if the CPU is actually 64-bit or not.
-	# This will do unknown bad things to 32-bit CPUs, but I said 'use on x64', so...
+
+	# Now we do check for a valid x86_64 CPU. We however don't check if CPUID is available
+	# to be able to do the check for x86_64.
+	# Either way, "production grade" enough.
+	# CPUs that old shouldn't really be even considered at all.
+	# I mean, I guess for fun, you can try to get Feral on it... but why?
+	# This kernel is mainly for learning (and eventually to be used for a serious, "gaming-oriented" OS)
+	# An 8086 in 2017 just can't handle that. It's barely faster than a calculator (if not on-par).
 
 	cmpl %eax, 0x36D76289
-	jnz hang		# panic!!! (we'll dub this the infamous Feral Black Screen (OF DEATH)!!!!)
+	jnz hang		# panic!!!
 
 	# ok, let's do a sanity check and make sure you're not doing something stupid like running on an i686 or something.
 
 	movl $0x80000000, %eax	# Set EAX to that value
 	cpuid			# We assume CPUID is supported. Adding the logic needed  to actually test would bloat this file up too much.
 	cmpl $0x80000001, %eax  # Compare the EAX register.
-	jb hang			# Black screen of death if it's below. There's no long mode here.
+	jb hang			# Hang if it's below. There's no long mode here.
 	movl $0x80000001, %eax	# Set the EAX register to this...
 	cpuid			# Check CPU ID.
 	andl (1 << 29), %edx	# Test if the long mode bit is set. 
-	jz hang			# If they aren't, Black Screen (of DEATH)!!!
+	jz hang			# If they aren't...
 
 	#Otherwise, we go on to boot in 64-bit mode. 
 	jmp enter_long_mode	# TODO: Figure out what kind of crazy insane magic we need to get eax and ebx to work ok.
