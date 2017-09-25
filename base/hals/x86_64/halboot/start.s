@@ -157,7 +157,7 @@ enable_pae:
 
 finish_long_mode:
 	movl $0xC0000080, %ecx	# Move into ECX the EFER MSR's location.
-	rdmsr			# No clue if this instruction is correct in Mabell syntax. Let's try it anyway.
+	rdmsr			# No clue if this instruction is correct in Mabell syntax. Let's try it anyway. (Does it need a suffix???)
 	or $(1 << 8), %eax	# Set this bit on.
 	wrmsr			# Write to the register.
 
@@ -166,10 +166,33 @@ finish_long_mode:
 	or $(1 << 31), %eax		# Just un-do what we did earlier to kill paging.
 	mov %eax, %cr0
 
+	# We not need to create a placeholder GDT, which we destroy and create a new one later.
+	# This might sound unintuitive, but it's needed to get the kernel to be memory mapped into the higher half area.
+	# We want a higher half kernel since it's easier to maintain ABI compatibility.
+	# (Speaking of higher level stuff, we might do something crazy like make filepaths more (native) "New Technology"-like, ie, /Device/DosDrives/A/FERALKER.NEL)
+	# This would (of course) be all internal, and allows us to hide /usr, /dev, /sys, /bin, etc, which only exist for *NIX compatibility, and aren't "true files".
+	# Since we like to copy some things about Mach, we can even incorporate features of it's descendants, ie, an "/Applications" and "/System" folder.
+	# Just to make it **really** easy to port to Waypoint. All of those are just handle-objects or symlinks to somewhere else (/System points to A:/System, for example.)
+	# References to "/mach_kernel" should also symlink to A:/FERALKER.NEL, which would be /Device/HardDisk0Section2/FERALKER.NEL.
+	# (where HardDisk0Section2 is the 'root' drive, and section 1 is an EFI system partition or whatever else, doesn't matter.)
+	# (Of which, when implementing the kernel to support an EFI stub mode, we'll have the awkward naming of "FERALKER.EFI".)
 
+	# One problem to deal with is how in the world to get the old stack, pop the EBX register off it, and get a pointer to the multiboot info we wanted.
+	# We're taking up an awful lot of memory, while loading the kernel, we might have inadventently overwritten that area in memory anyway.
+.code64
+trampoline:
+	# TODO...
+
+.code32
 .section .bss
 stack:
 	.align 16
 	.fill 16384, 1, 0	# Should be plenty of room here with a 16KiB stack.
 sstack:
+
+.code64
+stack64:
+	.align 16
+	.fill 16384, 1, 0	# Plenty of room for the stack here, even with twice the size of stuff.
+sstack64:
 end:

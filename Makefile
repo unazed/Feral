@@ -11,7 +11,7 @@ TEST_FILE = disk.img
 
 ## Adjective + Animal.
 CODENAME := Angry Aligator
-RELEASE_CANIDATE := -rc-1000	##Negative 1000 since we're not even closed to finished.
+RELEASE_CANIDATE := -rc-999	##Negative 999 since we're not even closed to finished for a 0.01.
 
 
 ##Some thing we'll probably need to do is try to figure out how to force Aarch64 to be ONLY little-endian, without performance penalty checking all the time.
@@ -20,6 +20,9 @@ RELEASE_CANIDATE := -rc-1000	##Negative 1000 since we're not even closed to fini
 export INCLUDE 				= $(ROOT)/Include -I$(ROOT)/Include/sdk
 export INCLUDE_INTERNAL 		= $(ROOT)/Include/krnl_internal
 export INCLUDE_USERSPACE 		= $(ROOT)/Include/userspace
+export INCLUDE_PUBLIC_HDRS		= $(ROOT)/public/feralinternals
+
+export INCLUDE_EVERYTHING 		= -I$(INCLUDE) -I$(INCLUDE_INTERNAL) -I$(INCLUDE_USERSPACE) -I$(INCLUDE_PUBLIC_HDRS)
 
 
 .PHONY:	OBJS GOAL all clean build_dir cleanall

@@ -5,7 +5,7 @@ INCLUDE_PRIVATE = Includepriv
 
 
 ## Include we need...
-CFLAGS += $(INCLUDE_PRIVATE)
+CFLAGS += $(INCLUDE_PRIVATE) -I$(INCLUDE_EVERYTHING)
 
 all: builddir krnl_o
 

@@ -36,7 +36,7 @@ typedef enum
 	KernelType,	/* Kernel-land resource object. */
 	TaskType,	/* Object is a task: this is what reactos calls a "Process".  */
 	NetworkType,	/* Object is a reference to a network... this can be the web, LAN, etc. */
-	MachineType,	/* This defines a machine, with the location based on FERALNET protocol (to be defined.) 'local' machine is always 0.0.0.0.0.0*/
+	MachineType,	/* This defines a machine, with the location based on FERALNET protocol (to be defined.) 'local' machine is always 0.0.0.0.0.0 */
 	AccessType,	/* Object defines a permissions structure. */
 	ResourceType,	/* Object defines a resource, such as virtual memory, GPU VRAM, etc. */
 	HandleType	/* Object defines a 'handle', which is a wrapper around a more complex group of objects for simplified interaction. */
