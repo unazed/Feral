@@ -50,7 +50,7 @@ int krnldiffstr(char* string, char* string1)
 	int index = 0;
 	char c  = string[0];
 	char c1 = string1[0];
-	while (c == c1)
+	while (c == c1 || (c != '\0' || c1 != '\0'))
 	{
 		index = index++;
 		c     = string[index];
@@ -62,7 +62,7 @@ int krnldiffstr(char* string, char* string1)
 int krnlstrlen(char* string)
 {
 	int len = 0;
-	while (string[len] != 0)
+	while (string[len] != '\0')
 	{
 		len = len++;
 	}
